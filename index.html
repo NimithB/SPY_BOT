@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Forensic Dashboard</title>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Works to Do</h2>
+        <ul>
+            <li><input type="checkbox"> Website</li>
+            <li><input type="checkbox"> Extraction Tool</li>
+            <li><input type="checkbox"> Hashing</li>
+            <li><input type="checkbox"> Research</li>
+            <li><input type="checkbox"> Devices Ready</li>
+        </ul>
+    </div>
+    <div class="main-panel">
+        <div class="router-status">
+            <h2>Router Status</h2>
+            <div class="status-indicator" id="status-indicator"></div>
+        </div>
+    <div class="ai-prediction">
+        <h2>AI Prediction Graph</h2>
+        <canvas id="pattern-analysis-chart"></canvas>
+    </div>
+    <div class="gps-map">
+        <h2>GPS Map</h2>
+        <div id="map" style="height: 400px;"></div>
+    </div>
+    <div class="forensic-dashboard">
+        <h2>Forensic Dashboard</h2>
+        <div class="data-collection">
+            <h3>Data Collection</h3>
+            <div class="data-card">Status: <span id="status">Active</span></div>
+            <div class="data-card">Working: <span id="working">Yes</span></div>
+            <div class="data-card">IP Address: <span id="ip-address">192.168.1.1</span></div>
+            <div class="data-card">Location: <span id="location">Lat/Long</span></div>
+            <div class="data-card">Devices Connected: <span id="num-devices">5</span></div>
+            <div class="data-card">Timestamps: <span id="timestamps">2023-10-01 12:00:00</span></div>
+            <div class="data-card">Malicious Activity: <span id="malicious-activity">None</span></div>
+        </div>
+        <div class="ai-prediction">
+            <h3>AI Prediction</h3>
+            <div class="ai-prediction-card">Video Activity Recognition: <video controls class="sample-image"><source src="video.mp4" type="video/mp4"></video></div>
+            <div class="ai-prediction-card">Pattern Analysis: <canvas id="pattern-analysis-chart"></canvas></div>
+            <div class="ai-prediction-card">Number of Voice Detections: <span id="voice-detections">3</span></div>
+            <div class="ai-prediction-card">Device Status: <span id="device-status">All Active</span></div>
+        </div>
+
+        </div>
+        <div class="buttons">
+            <button style="background-color: blue;">GPS</button>
+            <button style="background-color: yellow;">Devices Connected</button>
+            <button style="background-color: green;">Logs</button>
+            <button style="background-color: orange;">AI Prediction</button>
+            <button style="background-color: red;">Export</button>
+            <button style="background-color: purple;">Search from Data</button>
+            <button style="background-color: teal;">Summary</button>
+        </div>
+    </div>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
