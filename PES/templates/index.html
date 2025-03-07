@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Forensic Log Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>AI-Powered Forensic Log Dashboard</h1>
+    </header>
+    <nav>
+       
+        <button id="ai-prediction-button" onclick="window.location.href='{{ url_for('ai_prediction') }}'">AI Prediction</button>
+        
+        <button id="data-export-button" onclick="window.location.href='{{ url_for('export_pdf') }}'">Data Export</button>
+        <button id="gps-button" onclick="window.location.href='{{ url_for('gps') }}'">GPS Tracking</button>
+
+        <button id="logs-button" onclick="window.location.href='{{ url_for('logs') }}'">Logs</button>
+
+        <button id="summary-button">Summary</button>
+    </nav>
+    <main>
+        <section id="router-overview" style="margin-left: 150px;">
+            <h2>Router Overview Panel</h2>
+            <img src="{{ url_for('static', filename='router.png') }}" alt="Router Overview" style="width: 200px; float: left;">
+
+            <p>Connection Type: <span id="connection-type">WiFi</span></p>
+            <p>Public IP Address: <span id="public-ip">192.168.1.1</span></p>
+            <p>Connected Devices Count: <span id="connected-devices">5</span></p>
+            <p>Network Issues Status: <span id="network-status">None</span></p>
+            <p>ISP Provider Name: <span id="isp-provider">Your ISP</span></p>
+            <p>Internet Plan Speed: <span id="internet-speed">100 Mbps</span></p>
+        </section>
+    
+        <!-- Rest of the content sections -->
+        <!-- Script with Flask URL -->
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+</html>
