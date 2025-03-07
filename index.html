@@ -15,12 +15,17 @@
         <button id="ai-prediction-button">AI Prediction</button>
         <button id="logs-button">Logs</button>
         <button id="data-export-button">Data Export</button>
+        <button id="gps-button" onclick="window.location.href='gps.html'">GPS Tracking</button>
+
+        <button id="logs-button" onclick="window.location.href='logs.html'">Logs</button>
+
         <button id="summary-button">Summary</button>
     </nav>
     <main>
         <section id="router-overview" style="margin-left: 150px;">
             <h2>Router Overview Panel</h2>
-            <img src="N:/spybot/router.png" alt="Router Overview" style="width: 150px; float: left; margin-right: 15px;">
+            <img src="N:/spybot/router.png" alt="Router Overview" style="width: 200px; float: left; margin-right: 20px; border: 2px solid #007acc; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);">
+
             <p>Connection Type: <span id="connection-type">WiFi</span></p>
             <p>Public IP Address: <span id="public-ip">192.168.1.1</span></p>
             <p>Connected Devices Count: <span id="connected-devices">5</span></p>

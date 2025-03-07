@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Tracking - AI-Powered Forensic Log Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <h1>Real-Time GPS Tracking and Forensic Analysis</h1>
+    </header>
+    <main>
+        <section id="live-map">
+            <h2>Live Map Interface</h2>
+            <div id="map" style="height: 500px;"></div>
+            <p>GPS-based locations of suspects, police vehicles, forensic units, and surveillance devices will be displayed here.</p>
+        </section>
+        <section id="device-status">
+            <h2>Device Identification & Status</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Device ID</th>
+                        <th>Last Known Location</th>
+                        <th>Speed</th>
+                        <th>Movement History</th>
+                    </tr>
+                </thead>
+                <tbody id="device-entries">
+                    <!-- Device entries will be dynamically populated here -->
+                </tbody>
+            </table>
+        </section>
+        <section id="geo-fencing">
+            <h2>Geo-Fencing & Restricted Zones</h2>
+            <p>Define restricted areas on the map.</p>
+        </section>
+        <section id="ai-alerts">
+            <h2>AI-Driven Alerts & Automation</h2>
+            <p>Automated alerts for unusual movements will be generated here.</p>
+        </section>
+        <button onclick="goBack()">Back to Dashboard</button>
+    </main>
+    <footer>
+        <p>&copy; 2023 AI-Powered Forensic Log Dashboard</p>
+    </footer>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([37.7749, -122.4194], 13); // Default view
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Function to go back to the dashboard
+        function goBack() {
+            window.location.href = 'index.html'; // Redirect back to the main dashboard
+        }
+
+        // Function to update device locations (placeholder)
+        function updateDeviceLocations() {
+            // Logic to update device locations using WebSockets or MQTT
+        }
+
+        // Function to handle geo-fencing (placeholder)
+        function handleGeoFencing() {
+            // Logic to define geo-fenced areas and alerts
+        }
+
+        // Call functions to initialize features
+        updateDeviceLocations();
+        handleGeoFencing();
+    </script>
+</body>
+</html>
