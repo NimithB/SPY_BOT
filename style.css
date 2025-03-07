@@ -1,82 +1,122 @@
+/* General styles for the forensic log dashboard */
 body {
-    background-color: #121212;
-    color: #ffffff;
+    background-color: #1e1e1e; /* Dark background for dark mode */
+    color: #ffffff; /* Light text color */
     font-family: Arial, sans-serif;
 }
 
-.sidebar {
-    width: 250px;
-    background-color: #1e1e1e;
-    padding: 20px;
-    position: fixed;
-    height: 100%;
-}
-
-.sidebar h2 {
-    color: #ffffff;
-}
-
-.main-panel {
-    margin-left: 270px;
+/* Header styles */
+header {
+    text-align: center;
     padding: 20px;
 }
 
-.router-status, .ai-prediction, .gps-map, .forensic-dashboard {
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    padding: 15px;
+/* Navigation styles */
+nav {
+    background-color: #007acc; /* Navbar color */
+    padding: 10px;
+    text-align: center;
+}
+
+nav button {
+    background-color: #baebff; /* Button color */
+    color: #000; /* Button text color */
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+nav button:hover {
+    background-color: #69adc6; /* Lighter shade on hover */
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+}
+
+/* Router overview styles */
+#router-overview {
     margin-bottom: 20px;
 }
 
-.data-collection, .ai-prediction {
-    display: flex;
-    flex-direction: column;
+/* Network performance metrics styles */
+#network-performance {
+    margin-bottom: 20px;
 }
 
-.data-card, .ai-prediction-card {
-    background-color: #2a2a2a;
-    border-radius: 5px;
+/* Live video styles */
+#live-video {
+    margin-bottom: 20px;
+}
+
+/* Heatmaps styles */
+#heatmaps {
+    margin-bottom: 20px;
+}
+
+/* Geolocation tracking styles */
+#geolocation-tracking {
+    margin-bottom: 20px;
+}
+
+/* System logs styles */
+#system-logs {
+    margin-bottom: 20px;
+}
+
+/* Log table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
     padding: 10px;
-    margin: 5px 0;
+    text-align: left;
+    border: 1px solid #444;
 }
 
-.device-status-cards {
-    display: flex;
-    flex-direction: column;
+th {
+    background-color: #007acc; /* Header color */
 }
 
-.device-card {
-    padding: 10px;
-    border-radius: 5px;
-    margin: 5px 0;
-}
-
-.device-card.normal {
-    background-color: #4caf50; /* Green */
-}
-
-.device-card.warning {
-    background-color: #ffeb3b; /* Yellow */
-}
-
-.device-card.critical {
-    background-color: #f44336; /* Red */
-}
-
-.navigation-bar {
-    display: flex;
-    justify-content: space-around;
+/* Filtering section styles */
+#filtering {
     margin-top: 20px;
 }
 
-.navigation-bar button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    cursor: pointer;
+/* Pagination styles */
+#pagination {
+    margin-top: 20px;
+    text-align: center;
 }
 
-.navigation-bar button:hover {
-    opacity: 0.8;
+/* AI analysis results styles */
+.analysis-results {
+    background-color: #baebff; /* Background color for analysis results */
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* User actions styles */
+#user-actions {
+    margin-top: 20px;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #007acc; /* Footer color */
+}
+
+/* Map styles */
+#map {
+    height: 400px; /* Set height for the map */
+    width: 100%; /* Full width */
 }

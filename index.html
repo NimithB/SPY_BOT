@@ -3,68 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Forensic Dashboard</title>
+    <title>AI-Powered Forensic Log Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Works to Do</h2>
-        <ul>
-            <li><input type="checkbox"> Website</li>
-            <li><input type="checkbox"> Extraction Tool</li>
-            <li><input type="checkbox"> Hashing</li>
-            <li><input type="checkbox"> Research</li>
-            <li><input type="checkbox"> Devices Ready</li>
-        </ul>
-    </div>
-    <div class="main-panel">
-        <div class="router-status">
-            <h2>Router Status</h2>
-            <div class="status-indicator" id="status-indicator"></div>
-        </div>
-    <div class="ai-prediction">
-        <h2>AI Prediction Graph</h2>
-        <canvas id="pattern-analysis-chart"></canvas>
-    </div>
-    <div class="gps-map">
-        <h2>GPS Map</h2>
-        <div id="map" style="height: 400px;"></div>
-    </div>
-    <div class="forensic-dashboard">
-        <h2>Forensic Dashboard</h2>
-        <div class="data-collection">
-            <h3>Data Collection</h3>
-            <div class="data-card">Status: <span id="status">Active</span></div>
-            <div class="data-card">Working: <span id="working">Yes</span></div>
-            <div class="data-card">IP Address: <span id="ip-address">192.168.1.1</span></div>
-            <div class="data-card">Location: <span id="location">Lat/Long</span></div>
-            <div class="data-card">Devices Connected: <span id="num-devices">5</span></div>
-            <div class="data-card">Timestamps: <span id="timestamps">2023-10-01 12:00:00</span></div>
-            <div class="data-card">Malicious Activity: <span id="malicious-activity">None</span></div>
-        </div>
-        <div class="ai-prediction">
-            <h3>AI Prediction</h3>
-            <div class="ai-prediction-card">Video Activity Recognition: <video controls class="sample-image"><source src="video.mp4" type="video/mp4"></video></div>
-            <div class="ai-prediction-card">Pattern Analysis: <canvas id="pattern-analysis-chart"></canvas></div>
-            <div class="ai-prediction-card">Number of Voice Detections: <span id="voice-detections">3</span></div>
-            <div class="ai-prediction-card">Device Status: <span id="device-status">All Active</span></div>
-        </div>
-
-        </div>
-        <div class="buttons">
-            <button style="background-color: blue;">GPS</button>
-            <button style="background-color: yellow;">Devices Connected</button>
-            <button style="background-color: green;">Logs</button>
-            <button style="background-color: orange;">AI Prediction</button>
-            <button style="background-color: red;">Export</button>
-            <button style="background-color: purple;">Search from Data</button>
-            <button style="background-color: teal;">Summary</button>
-        </div>
-    </div>
-
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-    </script>
+    <header>
+        <h1>AI-Powered Forensic Log Dashboard</h1>
+    </header>
+    <nav>
+        <button id="gps-button">GPS Tracking</button>
+        <button id="ai-prediction-button">AI Prediction</button>
+        <button id="logs-button">Logs</button>
+        <button id="data-export-button">Data Export</button>
+        <button id="summary-button">Summary</button>
+    </nav>
+    <main>
+        <section id="router-overview" style="margin-left: 150px;">
+            <h2>Router Overview Panel</h2>
+            <img src="N:/spybot/router.png" alt="Router Overview" style="width: 150px; float: left; margin-right: 15px;">
+            <p>Connection Type: <span id="connection-type">WiFi</span></p>
+            <p>Public IP Address: <span id="public-ip">192.168.1.1</span></p>
+            <p>Connected Devices Count: <span id="connected-devices">5</span></p>
+            <p>Network Issues Status: <span id="network-status">None</span></p>
+            <p>ISP Provider Name: <span id="isp-provider">Your ISP</span></p>
+            <p>Internet Plan Speed: <span id="internet-speed">100 Mbps</span></p>
+        </section>
+        <section id="network-performance">
+            <h2>Real-Time Network Performance Metrics</h2>
+            <p>Uptime Percentage: <span id="uptime-percentage">99.9%</span></p>
+            <p>Bandwidth Usage: <span id="bandwidth-usage">50 Mbps</span></p>
+            <p>Signal Strength: <span id="signal-strength">Strong</span></p>
+            <p>Ping Test Results: <span id="ping-results">20 ms</span></p>
+            <p>DNS Status: <span id="dns-status">OK</span></p>
+        </section>
+        <section id="log-table">
+            <h2>Log Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Device ID</th>
+                        <th>User ID</th>
+                        <th>Geolocation</th>
+                        <th>Event Type</th>
+                        <th>Status Indicator</th>
+                    </tr>
+                </thead>
+                <tbody id="log-entries">
+                    <!-- Log entries will be dynamically populated here -->
+                </tbody>
+            </table>
+        </section>
+        <section id="filtering">
+            <h2>Advanced Filtering</h2>
+            <label for="device-type">Device Type:</label>
+            <select id="device-type">
+                <option value="all">All</option>
+                <option value="smartwatch">Smartwatch</option>
+                <option value="security-camera">Security Camera</option>
+                <option value="router">Router</option>
+            </select>
+            <label for="event-type">Event Type:</label>
+            <select id="event-type">
+                <option value="all">All</option>
+                <option value="unauthorized-access">Unauthorized Access</option>
+                <option value="network-breach">Network Breach</option>
+                <option value="suspicious-login">Suspicious Login</option>
+            </select>
+            <div>
+                <label><input type="checkbox" id="alert-filter"> 🚨 Alert</label>
+                <label><input type="checkbox" id="warning-filter"> ⚠️ Warning</label>
+                <label><input type="checkbox" id="normal-filter"> ✅ Normal</label>
+            </div>
+        </section>
+        <section id="pagination">
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+            <label for="page-size">Page Size:</label>
+            <select id="page-size">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+            </select>
+        </section>
+        <section id="ai-analysis">
+            <h2>AI-Powered Analysis</h2>
+            <div class="analysis-results">
+                <p>Unusual Patterns: <span id="unusual-patterns">None detected</span></p>
+                <p>High-Risk Locations: <span id="high-risk-locations">None detected</span></p>
+            </div>
+            <div id="live-video">
+                <h3>Live Video Activity Recognition</h3>
+                <video id="live-feed" controls autoplay>
+                    <source src="your-video-source.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>AI Detection: <span id="ai-detection-status">Monitoring...</span></p>
+            </div>
+            <div id="heatmaps">
+                <h3>Heatmaps & Threat Analysis</h3>
+                <canvas id="heatmap-canvas"></canvas>
+                <p>Incident Frequency: <span id="incident-frequency">0</span></p>
+            </div>
+        </section>
+        <section id="geolocation-tracking">
+            <h2>Interactive Geolocation Tracking</h2>
+            <div id="map"></div>
+            <p>Geofencing Alerts: <span id="geofencing-alerts">None</span></p>
+        </section>
+        <section id="system-logs">
+            <h2>System Logs</h2>
+            <div id="event-logs">
+                <p>Searchable Event Logs: <span id="searchable-logs">Available</span></p>
+            </div>
+        </section>
+        <section id="user-actions">
+            <h2>User Actions & Controls</h2>
+            <button id="refresh-button">Refresh</button>
+            <button id="speed-test-button">Advanced Speed Test</button>
+            <button id="download-logs-button">Download Logs</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 AI-Powered Forensic Log Dashboard</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
