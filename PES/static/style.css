@@ -1,5 +1,38 @@
 /* General styles for the forensic log dashboard */
 
+/* GPS Device Table Styling */
+#device-status {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+#device-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#device-table th, #device-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+#device-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#device-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#device-table tr:hover {
+    background-color: #ddd;
+}
+
 /* AI Analysis section styles */
 #ai-analysis {
     margin: 20px;
@@ -50,24 +83,37 @@
 
 /* Router overview styles */
 #router-overview {
-    text-align: center;
+    height: 80vh;
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 1000px;
 }
 
 .router-container {
-    position: relative;
-    display: inline-block;
-    margin: 0 auto 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.panel-left {
+    width: 300px;
+    padding: 15px;
+    text-align: left;
+    border-right: 1px solid #ddd;
+}
+
+.router-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    padding: 20px;
 }
 
 #router-overview img {
-    width: 200px;
-    height: 200px;
+    width: 280px;
+    height: 280px;
     border-radius: 50%;
     background-color: green;
-    display: block;
-    margin: 0 auto;
     padding: 10px;
     border: 5px solid green;
 }

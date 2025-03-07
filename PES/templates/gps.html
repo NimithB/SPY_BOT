@@ -18,6 +18,22 @@
             <div id="map" style="height: 500px;"></div>
         </section>
         <!-- Device table section -->
+        <section id="device-status">
+            <h2>GPS Device Status</h2>
+            <table id="device-table">
+                <thead>
+                    <tr>
+                        <th>Device ID</th>
+                        <th>Last Location</th>
+                        <th>Speed</th>
+                        <th>Movement</th>
+                    </tr>
+                </thead>
+                <tbody id="device-tbody">
+                    <!-- Device data will be inserted here -->
+                </tbody>
+            </table>
+        </section>
         <button onclick="window.location.href='{{ url_for('index') }}'">Back to Dashboard</button>
     </main>
     <footer>
@@ -82,6 +98,68 @@
                     alert('Geolocation is not supported by this browser');
                 }
             });
+
+            // Sample GPS devices data - in a real application this would come from an API
+            const devices = [
+                { id: 'GPS-001', location: 'N 40.7128° W 74.0060°', speed: '0 km/h', movement: 'Stationary' },
+                { id: 'GPS-002', location: 'N 34.0522° W 118.2437°', speed: '65 km/h', movement: 'Moving Northeast' },
+                { id: 'GPS-003', location: 'N 51.5074° W 0.1278°', speed: '30 km/h', movement: 'Moving West' }
+            ];
+            
+            // Function to populate device table
+            function populateDeviceTable(devices) {
+                const tbody = document.getElementById('device-tbody');
+                tbody.innerHTML = ''; // Clear existing rows
+                
+                devices.forEach(device => {
+                    const row = document.createElement('tr');
+                    
+                    const idCell = document.createElement('td');
+                    idCell.textContent = device.id;
+                    
+                    const locationCell = document.createElement('td');
+                    locationCell.textContent = device.location;
+                    
+                    const speedCell = document.createElement('td');
+                    speedCell.textContent = device.speed;
+                    
+                    const movementCell = document.createElement('td');
+                    movementCell.textContent = device.movement;
+                    
+                    row.appendChild(idCell);
+                    row.appendChild(locationCell);
+                    row.appendChild(speedCell);
+                    row.appendChild(movementCell);
+                    
+                    tbody.appendChild(row);
+                });
+            }
+            
+            // Initialize device table
+            populateDeviceTable(devices);
+            
+            // Update device data periodically (simulating real-time updates)
+            setInterval(() => {
+                // In a real application, you would fetch updated data from an API
+                // Here we're just simulating movement changes
+                devices.forEach(device => {
+                    const randomChange = Math.random();
+                    if (randomChange > 0.7) {
+                        const directions = ['North', 'South', 'East', 'West', 'Northeast', 'Northwest', 'Southeast', 'Southwest'];
+                        const speeds = [0, 15, 30, 45, 60, 75];
+                        
+                        const newSpeed = speeds[Math.floor(Math.random() * speeds.length)];
+                        device.speed = newSpeed + ' km/h';
+                        
+                        if (newSpeed === 0) {
+                            device.movement = 'Stationary';
+                        } else {
+                            device.movement = 'Moving ' + directions[Math.floor(Math.random() * directions.length)];
+                        }
+                    }
+                });
+                populateDeviceTable(devices);
+            }, 5000); // Update every 5 seconds
         });
     </script>
 </body>

@@ -22,16 +22,21 @@
         <button id="summary-button">Summary</button>
     </nav>
     <main>
-        <section id="router-overview" style="margin-left: 150px;">
-            <h2>Router Overview Panel</h2>
-            <img src="{{ url_for('static', filename='router.png') }}" alt="Router Overview" style="width: 200px; float: left;">
-
-            <p>Connection Type: <span id="connection-type">WiFi</span></p>
-            <p>Public IP Address: <span id="public-ip">192.168.1.1</span></p>
-            <p>Connected Devices Count: <span id="connected-devices">5</span></p>
-            <p>Network Issues Status: <span id="network-status">None</span></p>
-            <p>ISP Provider Name: <span id="isp-provider">Your ISP</span></p>
-            <p>Internet Plan Speed: <span id="internet-speed">100 Mbps</span></p>
+        <section id="router-overview">
+            <div class="router-container">
+                <div class="panel-left">
+                    <h2>Router Overview Panel</h2>
+                    <p>Connection Type: <span id="connection-type">WiFi</span></p>
+                    <p>Public IP Address: <span id="public-ip">192.168.1.1</span></p>
+                    <p>Network Issues Status: <span id="network-status">None</span></p>
+                    <p>Connected Devices Count: <span id="connected-devices">5</span></p>
+                    <p>ISP Provider Name: <span id="isp-provider">Your ISP</span></p>
+                    <p>Internet Plan Speed: <span id="internet-speed">100 Mbps</span></p>
+                </div>
+                <div class="router-image">
+                    <img src="{{ url_for('static', filename='router.png') }}" alt="Router Overview">
+                </div>
+            </div>
         </section>
     
         <!-- Rest of the content sections -->
