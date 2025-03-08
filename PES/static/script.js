@@ -2,6 +2,8 @@
 
 // Initialize log entries when the page loads
 function initLogEntries() {
+    console.log("initLogEntries called");
+
     const logEntries = document.getElementById('log-entries');
     if (!logEntries) return;
 
@@ -39,6 +41,8 @@ function initLogEntries() {
 
 // Update router overview data
 function updateRouterOverview() {
+    console.log("updateRouterOverview called");
+
     document.getElementById('connection-type').textContent = 'WiFi';
     document.getElementById('public-ip').textContent = '192.168.1.1';
     
@@ -65,6 +69,8 @@ function updateRouterOverview() {
 
 // Update network performance metrics
 function updateNetworkPerformance() {
+    console.log("updateNetworkPerformance called");
+
     if (!document.getElementById('uptime-percentage')) return;
     
     document.getElementById('uptime-percentage').textContent = (99 + Math.random()).toFixed(1) + '%';
@@ -76,6 +82,8 @@ function updateNetworkPerformance() {
 
 // Handle live video feed
 function handleLiveVideo() {
+    console.log("handleLiveVideo called");
+
     const liveVideo = document.getElementById('live-feed');
     if (!liveVideo) return;
     
@@ -89,6 +97,8 @@ function handleLiveVideo() {
 
 // Update heatmap data
 function updateHeatmaps() {
+    console.log("updateHeatmaps called");
+
     const heatmapCanvas = document.getElementById('heatmap-canvas');
     if (!heatmapCanvas) return;
     
@@ -99,6 +109,8 @@ function updateHeatmaps() {
 
 // Track geolocation
 function trackGeolocation() {
+    console.log("trackGeolocation called");
+
     const map = document.getElementById('map');
     if (!map) return;
     
@@ -114,6 +126,8 @@ function trackGeolocation() {
 
 // Update AI analysis results
 function updateAIAnalysis() {
+    console.log("updateAIAnalysis called");
+
     if (!document.getElementById('unusual-patterns')) return;
     
     document.getElementById('unusual-patterns').textContent = 
@@ -131,6 +145,8 @@ function updateAIAnalysis() {
 
 // Initialize page on load
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM fully loaded and parsed");
+
     initLogEntries();
     updateRouterOverview();
     updateNetworkPerformance();
