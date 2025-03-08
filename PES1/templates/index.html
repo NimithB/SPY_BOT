@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Forensic Log Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        body.light-mode { background-color: white; color: black; font-family: Arial, sans-serif; }
+        body.dark-mode { background-color: black; color: green; font-family: 'Courier New', Courier, monospace; }
+        body.dark-mode * { color: green !important; }
+
+        /* Navbar Styling */
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #222;
+            padding: 10px;
+        }
+
+        nav button {
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #444;
+            color: white;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        nav button:hover {
+            background-color: #666;
+        }
+
+        .router-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .router-image img {
+            width: 200px;
+            border-radius: 10px;
+        }
+    </style>
+
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+        }
+    </script>
+</head>
+
+<body class="light-mode">
+
+<header>
+    <h1>AI-Powered Forensic Log Dashboard</h1>
+    <img src="{{ url_for('static', filename='CID.png') }}" alt="CID Logo" style="position: absolute; top: 10px; right: 10px; width: 100px;">
+</header>
+
+<!-- ✅ NAVIGATION BAR -->
+<nav>
+    <button id="mode-toggle" onclick="toggleMode()">Toggle Dark/Light Mode</button>
+    <button onclick="window.location.href='{{ url_for('ai_prediction') }}'">AI Prediction</button>
+
+    <button onclick="window.location.href='{{ url_for('export_pdf') }}'">Data Export</button>
+    <button onclick="window.location.href='{{ url_for('gps') }}'">GPS Tracking</button>
+    <button onclick="window.location.href='{{ url_for('logs') }}'">Logs</button>
+    <button onclick="window.location.href='{{ url_for('terminal') }}'">🔧 Terminal</button>  <!-- ✅ Terminal Button -->
+    <button onclick="window.location.href='{{ url_for('summary') }}'">Summary</button>
+    <button onclick="window.location.href='{{ url_for('export_pdf') }}'">Export PDF</button>
+
+</nav>
+<main>
+    <!-- ✅ Router Overview -->
+    <section id="router-overview">
+        <h2>Router Overview</h2>
+        <div class="router-container">
+            <div class="panel-left">
+                <p>Public IP Address: <span id="public-ip">192.168.1.1</span></p>
+                <p>Connected Devices: <span id="connected-devices">5</span></p>
+                <p>ISP: <span id="isp-provider">Your ISP</span></p>
+                <p>Internet Speed: <span id="internet-speed">100 Mbps</span></p>
+                <p>Connection Indicator: <span id="connection-indicator" class="connected">Connected</span></p>
+                <p>Uptime Percentage: <span id="uptime-percentage">99.9%</span></p>
+                <p>Bandwidth Usage: <span id="bandwidth-usage">30 Mbps</span></p>
+                <p>Signal Strength: <span id="signal-strength">Strong</span></p>
+                <p>Ping Results: <span id="ping-results">20 ms</span></p>
+                <p>DNS Status: <span id="dns-status">OK</span></p>
+            </div>
+            <div class="router-image">
+                <img src="{{ url_for('static', filename='router.png') }}" alt="Router Overview">
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ Log Entries -->
+    <section id="log-entries">
+        <h2>Log Entries</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Device ID</th>
+                    <th>User ID</th>
+                    <th>Geolocation</th>
+                    <th>Event Type</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="log-data">
+                <!-- Log entries will be dynamically populated -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ✅ Data Export -->
+    <section id="data-export">
+        <h2>Data Export</h2>
+        <button onclick="exportToCSV()">Export Logs to CSV</button>
+        <button onclick="exportToPDF()">Export Logs to PDF</button>
+    </section>
+</main>
+
+<!-- ✅ JavaScript -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>
+    function exportToCSV() {
+        window.location.href = "{{ url_for('export_csv') }}";
+    }
+
+    function exportToPDF() {
+        window.location.href = "{{ url_for('export_pdf') }}";
+    }
+</script>
+
+</body>
+</html>

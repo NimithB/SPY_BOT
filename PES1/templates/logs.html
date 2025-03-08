@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs - AI-Powered Forensic Log Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Event Logs</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Device ID</th>
+                    <th>User ID</th>
+                    <th>Geolocation</th>
+                    <th>Event Type</th>
+                    <th>Status Indicator</th>
+                </tr>
+            </thead>
+            <tbody id="log-entries">
+                <tr onclick="redirectToDetail('Device001')">
+                    <td>2025-03-07T03:45:04.792Z</td>
+                    <td>Device001</td>
+                    <td>User123</td>
+                    <td>37.7749, -122.4194</td>
+                    <td>Alert</td>
+                    <td>🚨</td>
+                </tr>
+                <tr onclick="redirectToDetail('Device002')">
+                    <td>2025-03-07T04:00:00.000Z</td>
+                    <td>Device002</td>
+                    <td>User456</td>
+                    <td>37.7749, -122.4194</td>
+                    <td>Warning</td>
+                    <td>⚠️</td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="window.location.href='{{ url_for('index') }}'">Back to Dashboard</button>
+        <button onclick="window.location.href='{{ url_for('export_pdf') }}'">Export to PDF</button>
+    </main>
+    <footer>
+        <p>&copy; 2023 AI-Powered Forensic Log Dashboard</p>
+    </footer>
+    <script>
+        function redirectToDetail(deviceId) {
+            // In a real application, this would navigate to a device detail page
+            alert("Viewing details for " + deviceId);
+        }
+    </script>
+</body>
+</html>
