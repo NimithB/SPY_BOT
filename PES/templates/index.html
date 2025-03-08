@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Powered Forensic Log Dashboard</title>
+    <title>SMART SPYBOT</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body.light-mode {
-            background-color: white;
-            color: black;
-            font-family: Arial, sans-serif;
-        }
-        body.dark-mode {
-            background-color: black;
-            color: green;
+            background-color: #0d1117;
+            color: #00ff00;
             font-family: 'Courier New', Courier, monospace;
         }
-        /* Ensure all text is green in dark mode */
-        body.dark-mode * {
-            color: green !important;
+        body.light-mode h1, body.light-mode h2, body.light-mode p, body.light-mode table {
+            color: #00ff00;
+        }
+        body.light-mode button {
+            background-color: #111;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+        body.light-mode button:hover {
+            background-color: #00ff00;
+            color: #111;
+        }
+        
+        /* Dark mode styling for Router Overview */
+        body.light-mode #router-overview {
+            background-color: #0d1117;
+            color: #00ff00;
+        }
+        body.light-mode #router-overview h2, 
+        body.light-mode #router-overview p {
+            color: #00ff00;
         }
     </style>
     <script>
@@ -31,7 +44,7 @@
 </head>
 <body class="light-mode">
 <header>
-    <h1>AI-Powered Forensic Log Dashboard</h1>
+    <h1 style="font-size: 40px;">SMART SPYBOT</h1>
     <img src="{{ url_for('static', filename='CID.png') }}" alt="CID Logo" style="position: absolute; top: 10px; right: 10px; width: 100px; height: auto;">
 </header>
 <nav>
@@ -49,7 +62,6 @@
                 <h2>Router Overview</h2>
                 <p>Connection Type: <span id="connection-type">WiFi</span></p>
                 <p>Public IP Address: <span id="public-ip">192.168.1.1</span></p>
-
                 <p>Network Issues Status: <span id="network-status">None</span></p>
                 <p>Connected Devices Count: <span id="connected-devices">5</span></p>
                 <p>ISP Provider Name: <span id="isp-provider">Your ISP</span></p>
@@ -66,25 +78,7 @@
             </div>
         </div>
     </section>
-    <section id="log-entries">
-        <h2>Log Entries</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Timestamp</th>
-                    <th>Device ID</th>
-                    <th>User ID</th>
-                    <th>Geolocation</th>
-                    <th>Event Type</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Log entries will be populated here -->
-            </tbody>
-        </table>
-    </section>
-    <!-- Script with Flask URL -->
+    
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </main>
 </body>

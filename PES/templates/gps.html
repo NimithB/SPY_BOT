@@ -7,9 +7,71 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <style>
+        body.light-mode {
+            background-color: #0d1117;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body.light-mode h1, body.light-mode h2, body.light-mode p, body.light-mode table {
+            color: #00ff00;
+        }
+        body.light-mode button {
+            background-color: #111;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+        body.light-mode button:hover {
+            background-color: #00ff00;
+            color: #111;
+        }
+        body.light-mode #ai-analysis {
+            background-color: rgba(0, 255, 0, 0.1);
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+        
+        /* Dark mode styling for Router Overview */
+        body.light-mode #router-overview {
+            background-color: #0d1117;
+            color: #00ff00;
+        }
+        body.light-mode #router-overview h2, 
+        body.light-mode #router-overview p {
+            color: #00ff00;
+        }
+        body.light-mode #device-status, 
+body.light-mode #live-map {
+    background-color: #0d1117;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+body.light-mode #device-status table, 
+body.light-mode #device-status th, 
+body.light-mode #device-status td {
+    color: #00ff00;
+    border: 1px solid #00ff00;
+}
+
+body.light-mode #map {
+    filter: invert(90%) hue-rotate(120deg);
+}
+
+    </style>
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+        }
+    </script>
 </head>
 <body>
     <header>
+        <button id="mode-toggle" onclick="toggleMode()" style="position: absolute; top: 10px; left: 10px;">Toggle Dark/Light Mode</button>
         <h1>Real-Time GPS Tracking and Forensic Analysis</h1>
     </header>
     <main>

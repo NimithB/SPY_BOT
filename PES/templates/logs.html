@@ -5,9 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logs - AI-Powered Forensic Log Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body.light-mode {
+            background-color: #0d1117;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body.light-mode h1, body.light-mode h2, body.light-mode p, body.light-mode table {
+            color: #00ff00;
+        }
+        body.light-mode button {
+            background-color: #111;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+        body.light-mode button:hover {
+            background-color: #00ff00;
+            color: #111;
+        }
+        
+        /* Dark mode styling for Router Overview */
+        body.light-mode #router-overview {
+            background-color: #0d1117;
+            color: #00ff00;
+        }
+        body.light-mode #router-overview h2, 
+        body.light-mode #router-overview p {
+            color: #00ff00;
+        }
+    </style>
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+        }
+    </script>
 </head>
 <body>
     <header>
+        <button id="mode-toggle" onclick="toggleMode()" style="position: absolute; top: 10px; left: 10px;">Toggle Dark/Light Mode</button>
         <h1>Event Logs</h1>
     </header>
     <main>
