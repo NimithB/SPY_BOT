@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Tracking - AI-Powered Forensic Log Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+</head>
+<body>
+    <header>
+        <h1>Real-Time GPS Tracking and Forensic Analysis</h1>
+    </header>
+    <main>
+        <section id="live-map">
+            <h2>Live Map Interface</h2>
+            <div id="map" style="height: 500px;"></div>
+        </section>
+        <!-- Device table section -->
+        <section id="device-status">
+            <h2>GPS Device Status</h2>
+            <table id="device-table">
+                <thead>
+                    <tr>
+                        <th>Device ID</th>
+                        <th>Last Location</th>
+                        <th>Speed</th>
+                        <th>Movement</th>
+                    </tr>
+                </thead>
+                <tbody id="device-tbody">
+                    <!-- Device data will be inserted here -->
+                </tbody>
+            </table>
+        </section>
+        <button onclick="window.location.href='{{ url_for('index') }}'">Back to Dashboard</button>
+    </main>
+    <footer>
+        <p>&copy; 2023 AI-Powered Forensic Log Dashboard</p>
+    </footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Initialize the map
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create map centered at default location (will be updated with user's location)
+            const map = L.map('map').setView([0, 0], 2);
+            
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Add a button to track current location
+            const locationButton = document.createElement('button');
+            locationButton.textContent = 'Track My Location';
+            locationButton.className = 'location-button';
+            locationButton.style.position = 'absolute';
+            locationButton.style.top = '10px';
+            locationButton.style.right = '10px';
+            locationButton.style.zIndex = '1000';
+            locationButton.style.padding = '10px';
+            document.getElementById('live-map').appendChild(locationButton);
+            
+            let userMarker;
+            locationButton.addEventListener('click', function() {
+                if (navigator.geolocation) {
+                    locationButton.textContent = 'Locating...';
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            const lat = position.coords.latitude;
+                            const lng = position.coords.longitude;
+                            
+                            // Update map view to user's location
+                            map.setView([lat, lng], 15);
+                            
+                            // Add or update marker
+                            if (userMarker) {
+                                userMarker.setLatLng([lat, lng]);
+                            } else {
+                                userMarker = L.marker([lat, lng]).addTo(map)
+                                    .bindPopup('Your current location').openPopup();
+                            }
+                            
+                            locationButton.textContent = 'Update My Location';
+                        },
+                        function(error) {
+                            alert('Error getting location: ' + error.message);
+                            locationButton.textContent = 'Track My Location';
+                        },
+                        {
+                            enableHighAccuracy: true,
+                            timeout: 5000,
+                            maximumAge: 0
+                        }
+                    );
+                } else {
+                    alert('Geolocation is not supported by this browser');
+                }
+            });
+
+            // Sample GPS devices data - in a real application this would come from an API
+            const devices = [
+                { id: 'GPS-001', location: 'N 40.7128° W 74.0060°', speed: '0 km/h', movement: 'Stationary' },
+                { id: 'GPS-002', location: 'N 34.0522° W 118.2437°', speed: '65 km/h', movement: 'Moving Northeast' },
+                { id: 'GPS-003', location: 'N 51.5074° W 0.1278°', speed: '30 km/h', movement: 'Moving West' }
+            ];
+            
+            // Function to populate device table
+            function populateDeviceTable(devices) {
+                const tbody = document.getElementById('device-tbody');
+                tbody.innerHTML = ''; // Clear existing rows
+                
+                devices.forEach(device => {
+                    const row = document.createElement('tr');
+                    
+                    const idCell = document.createElement('td');
+                    idCell.textContent = device.id;
+                    
+                    const locationCell = document.createElement('td');
+                    locationCell.textContent = device.location;
+                    
+                    const speedCell = document.createElement('td');
+                    speedCell.textContent = device.speed;
+                    
+                    const movementCell = document.createElement('td');
+                    movementCell.textContent = device.movement;
+                    
+                    row.appendChild(idCell);
+                    row.appendChild(locationCell);
+                    row.appendChild(speedCell);
+                    row.appendChild(movementCell);
+                    
+                    tbody.appendChild(row);
+                });
+            }
+            
+            // Initialize device table
+            populateDeviceTable(devices);
+            
+            // Update device data periodically (simulating real-time updates)
+            setInterval(() => {
+                // In a real application, you would fetch updated data from an API
+                // Here we're just simulating movement changes
+                devices.forEach(device => {
+                    const randomChange = Math.random();
+                    if (randomChange > 0.7) {
+                        const directions = ['North', 'South', 'East', 'West', 'Northeast', 'Northwest', 'Southeast', 'Southwest'];
+                        const speeds = [0, 15, 30, 45, 60, 75];
+                        
+                        const newSpeed = speeds[Math.floor(Math.random() * speeds.length)];
+                        device.speed = newSpeed + ' km/h';
+                        
+                        if (newSpeed === 0) {
+                            device.movement = 'Stationary';
+                        } else {
+                            device.movement = 'Moving ' + directions[Math.floor(Math.random() * directions.length)];
+                        }
+                    }
+                });
+                populateDeviceTable(devices);
+            }, 5000); // Update every 5 seconds
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Forensic Log Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body.light-mode {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        body.dark-mode {
+            background-color: black;
+            color: green;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        /* Ensure all text is green in dark mode */
+        body.dark-mode * {
+            color: green !important;
+        }
+    </style>
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+        }
+    </script>
+</head>
+<body class="light-mode">
+<header>
+    <h1>AI-Powered Forensic Log Dashboard</h1>
+    <img src="{{ url_for('static', filename='CID.png') }}" alt="CID Logo" style="position: absolute; top: 10px; right: 10px; width: 100px; height: auto;">
+</header>
+<nav>
+    <button id="mode-toggle" onclick="toggleMode()" style="position: absolute; top: 10px; left: 10px;">Toggle Dark/Light Mode</button>
+    <button id="ai-prediction-button" onclick="window.location.href='{{ url_for('ai_prediction') }}'">AI Prediction</button>
+    <button id="data-export-button" onclick="window.location.href='{{ url_for('export_pdf') }}'">Data Export</button>
+    <button id="gps-button" onclick="window.location.href='{{ url_for('gps') }}'">GPS Tracking</button>
+    <button id="logs-button" onclick="window.location.href='{{ url_for('logs') }}'">Logs</button>
+    <button id="summary-button">Summary</button>
+</nav>
+<main>
+    <section id="router-overview">
+        <div class="router-container">
+            <div class="panel-left">
+                <h2>Router Overview</h2>
+                <p>Connection Type: <span id="connection-type">WiFi</span></p>
+                <p>Public IP Address: <span id="public-ip">192.168.1.1</span></p>
+
+                <p>Network Issues Status: <span id="network-status">None</span></p>
+                <p>Connected Devices Count: <span id="connected-devices">5</span></p>
+                <p>ISP Provider Name: <span id="isp-provider">Your ISP</span></p>
+                <p>Internet Plan Speed: <span id="internet-speed">100 Mbps</span></p>
+                <p>Connection Indicator: <span id="connection-indicator" class="connected">Connected</span></p>
+                <p>Uptime Percentage: <span id="uptime-percentage">99.9%</span></p>
+                <p>Bandwidth Usage: <span id="bandwidth-usage">30 Mbps</span></p>
+                <p>Signal Strength: <span id="signal-strength">Strong</span></p>
+                <p>Ping Results: <span id="ping-results">20 ms</span></p>
+                <p>DNS Status: <span id="dns-status">OK</span></p>
+            </div>
+            <div class="router-image">
+                <img src="{{ url_for('static', filename='router.png') }}" alt="Router Overview">
+            </div>
+        </div>
+    </section>
+    <section id="log-entries">
+        <h2>Log Entries</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Device ID</th>
+                    <th>User ID</th>
+                    <th>Geolocation</th>
+                    <th>Event Type</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Log entries will be populated here -->
+            </tbody>
+        </table>
+    </section>
+    <!-- Script with Flask URL -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</main>
+</body>
+</html>
